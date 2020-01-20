@@ -50,7 +50,7 @@ def youtube_search(query, max_results):
 #show download progress
 def progress_check(stream = None, chunk = None, file_handle = None, remaining = None ):
   percent = (100*(file_size-remaining))/file_size
-  print("{:00.0f}% downloaded ".format(percent), end="\r")#solve progress 
+  print("--->{:00.0f}% downloaded ".format(percent), end="\r")#solve progress 
 
 #file path to save the video
 def file_path():
@@ -65,14 +65,14 @@ def download(ids):
   		add logic to allow user to choose video quality
   		and choose conversion to mp3
   """
-  print(ids)
+  
   url = f'https://www.youtube.com/watch?v={ids}'
   video = YouTube(url, on_progress_callback=progress_check)
   vid_type = video.streams.filter(progressive=True, file_extension = "mp4").first()
   
   global file_size
   file_size = vid_type.filesize
-  print(file_path())
+  
   vid_type.download(file_path())
 
 
@@ -92,6 +92,7 @@ if __name__ == '__main__':
    		vids = [json.loads(i) for i in videos]
    		file = vids[int(num)]
    		c = False
+   		print('downloading -->'+file['name'])
    		download(file['id'])
 
    		
