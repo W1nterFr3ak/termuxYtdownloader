@@ -50,7 +50,7 @@ def youtube_search(query, max_results):
 #show download progress
 def progress_check(stream = None, chunk = None, file_handle = None, remaining = None ):
   percent = (100*(file_size-remaining))/file_size
-  print("{:00.0f}% downloaded ".format(percent))#solve progress 
+  print("{:00.0f}% downloaded ".format(percent), end="\r")#solve progress 
 
 #file path to save the video
 def file_path():
