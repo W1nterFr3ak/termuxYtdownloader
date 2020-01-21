@@ -122,7 +122,7 @@ if __name__ == "__main__":
   os.system('echo "\\e[1;32m\"')
   os.system('echo "\\e[1;34m          Created By H4CK4BY55 \\e[0m"')
   os.system('echo "\\e[2;32m     we are the league of drunkards \\e[0m"')
-  os.system('echo "\\e[2;32m     Winter Malibu Glith ChArlie Koimet \\e[0m"')
+  os.system('echo "\\e[2;32m     Winter Malibu Glitch ChArlie Koimet \\e[0m"')
   os.system('echo "\\e[1;32m   Mail: hackbytes@protonmail.com \\e[0m"')
   print()
   name = input("Enter Video to search :")
