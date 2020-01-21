@@ -1,4 +1,5 @@
 #helper imports
+import random
 import os
 # from .playlist import fetch_all_youtube_videos 
 import json
@@ -12,7 +13,7 @@ from oauth2client.tools import argparser
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 max_results = 10
-
+rows, columns = os.popen('stty size', 'r').read().split()
 # Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
 # tab of
 #   https://cloud.google.com/console
@@ -74,7 +75,6 @@ def get_vals(search_response):
             playlists.append(json.dumps(vidrec))
     return videos, playlists #return an array of jesonified records
 
-#______________________________________________________________________________________________________________
 
 #show download progress
 def progress_check(stream = None, chunk = None, file_handle = None, remaining = None ):#complete
@@ -99,10 +99,10 @@ def download(ids):#complete
     vid_type = video.streams.filter(progressive=True, file_extension = "mp4").first()
     global file_size
     file_size = vid_type.filesize
-    d = input(f"Proceed to download {file_size/1e+6} mb file (y/n)")
+    d = input(f"Proceed to download {file_size/1e+6} mb file (y/n) :")
     if d.lower() == "n":
         os.system("clear")
-    elif d.lower == "y":
+    elif d.lower() == "y":
         vid_type.download(file_path())
     else:
         exit(0)
@@ -114,15 +114,27 @@ def download(ids):#complete
 # user interactions 
 
 if __name__ == "__main__":
-  c=True
+  fonts = ["block","bubble","digital","ivrit","mini","script","shadow","slant","small","smscript","smshadow","smslant","standard"]
+  random.shuffle(fonts)
+  os.system("clear")
+  os.system('echo  "\\e[1;31m\"')
+  os.system('echo "\\e[1;32m\"')
+  os.system('echo "\\e[1;32m\"')
+  os.system('echo "\\e[1;34m          Created By H4CK4BY55 \\e[0m"')
+  os.system('echo "\\e[2;32m     we are the league of drunkards \\e[0m"')
+  os.system('echo "\\e[2;32m     Winter Malibu Glith ChArlie Koimet \\e[0m"')
+  os.system('echo "\\e[1;32m   Mail: hackbytes@protonmail.com \\e[0m"')
+  print()
   name = input("Enter Video to search :")
   search_response = youtube_search(name, max_results)
-  while c:
+  while True:
     # videos, playlists = youtube_search(name, 10)
     videos, playlists = get_vals(search_response)
     for key, i in enumerate(videos):
       d = json.loads(i)
-      print(f"{key}- {d['name']}")
+      os.system(f'echo "{key}|\\e[2;32m {d["name"]}\\e[0m"')
+      print("_"*int(columns))
+      #print(f"{key}- {d['name']}")
     n = input("enter m for more number to download :")
     try:
       if n.lower() == "m":
