@@ -113,7 +113,7 @@ def download(ids):#complete
 
 # user interactions 
 
-if __name__ == "__main__":
+def main():
   fonts = ["block","bubble","digital","ivrit","mini","script","shadow","slant","small","smscript","smshadow","smslant","standard"]
   random.shuffle(fonts)
   os.system("clear")
@@ -125,7 +125,10 @@ if __name__ == "__main__":
   os.system('echo "\\e[2;32m     Winter Malibu Glitch ChArlie Koimet \\e[0m"')
   os.system('echo "\\e[1;32m   Mail: hackbytes@protonmail.com \\e[0m"')
   print()
-  name = input("Enter Video to search :")
+  name = input("Enter Video to search q to quit:")
+  if name.lower() == "q":
+      print("exiting")
+      exit()
   search_response = youtube_search(name, max_results)
   while True:
     # videos, playlists = youtube_search(name, 10)
@@ -135,10 +138,13 @@ if __name__ == "__main__":
       os.system(f'echo "{key}|\\e[2;32m {d["name"]}\\e[0m"')
       print("_"*int(columns))
       #print(f"{key}- {d['name']}")
-    n = input("enter m for more number to download :")
+    n = input("enter m for more number to download  s to search again: ")
     try:
       if n.lower() == "m":
         search_response = nextPage(search_response, name)
+      elif n.lower() == "s":
+        os.system("clear")
+        main()
       else:
         num = int(n)
         vids = [json.loads(i) for i in videos]
@@ -148,3 +154,6 @@ if __name__ == "__main__":
         print("Sorry n  or number" + str(e))
         exit(0)
 
+
+if __name__ == "__main__":
+    main()
