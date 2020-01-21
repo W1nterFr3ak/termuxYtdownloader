@@ -99,37 +99,19 @@ def download(ids):#complete
     vid_type = video.streams.filter(progressive=True, file_extension = "mp4").first()
     global file_size
     file_size = vid_type.filesize
-    print("when finished check your downloads")
-    vid_type.download(file_path())
+    d = input(f"Proceed to download {file_size/1e+6} mb file (y/n)")
+    if d.lower() == "n":
+        os.system("clear")
+    elif d.lower == "y":
+        vid_type.download(file_path())
+    else:
+        exit(0)
+        print("Sorry did not understand command")
 
 
 
 
-# if __name__ == '__main__':
-#   dec = input("For Videos input (v) for playlists input (p) :")
-#   if dec.lower() == 'v':
-    # name = input("Enter Video to search :")
-    # videos, playlists = youtube_search(name, 10)
-    # for key, i in enumerate(videos):
-    #   d = json.loads(i)
-    #   print(f"{key}- {d['name']}")
-
-#     c = True
-#     while c:
-#      	try:
-#      		num = input("Input the number of video to download : ")
-#      		vids = [json.loads(i) for i in videos]
-#      		file = vids[int(num)]
-#      		c = False
-#      		download(file['id'])
-
-     		
-#      		print("thankyou")
-#      	except Exception as e:
-#      		print ("please input a number: " )
-
-    
-    
+# user interactions 
 
 if __name__ == "__main__":
   c=True
@@ -141,7 +123,7 @@ if __name__ == "__main__":
     for key, i in enumerate(videos):
       d = json.loads(i)
       print(f"{key}- {d['name']}")
-    n = input("enter m for next number to download :")
+    n = input("enter m for more number to download :")
     try:
       if n.lower() == "m":
         search_response = nextPage(search_response, name)
