@@ -5,4 +5,5 @@ google-api-python-client==1.7.11
 google-auth==1.10.1
 google-auth-httplib2==0.0.3
 google-auth-oauthlib==0.4.1
-git+https://github.com/swiftyy-mage/pytube.git
+git+https://github.com/giacaglia/pytube.git
+
