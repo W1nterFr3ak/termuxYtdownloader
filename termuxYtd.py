@@ -94,19 +94,24 @@ def download(ids):#complete
   		add logic to allow user to choose video quality
   		and choose conversion to mp3
                 """
-    url = f'https://www.youtube.com/watch?v={ids}'
-    video = YouTube(url, on_progress_callback=progress_check)
-    vid_type = video.streams.filter(progressive=True, file_extension = "mp4").first()
-    global file_size
-    file_size = vid_type.filesize
-    d = input(f"Proceed to download {file_size/1e+6} mb file (y/n) :")
-    if d.lower() == "n":
-        os.system("clear")
-    elif d.lower() == "y":
-        vid_type.download(file_path())
-    else:
-        exit(0)
-        print("Sorry did not understand command")
+    try:
+        url = f'https://www.youtube.com/watch?v={ids}'
+        video = YouTube(url, on_progress_callback=progress_check)
+        vid_type = video.streams.filter(progressive=True, file_extension = "mp4").first()
+        global file_size
+        file_size = vid_type.filesize
+        d = input(f"Proceed to download {file_size/1e+6} mb file (y/n) :")
+        if d.lower() == "n":
+            os.system("clear")
+        elif d.lower() == "y":
+            vid_type.download(file_path())
+        else:
+            exit(0)
+            print("Sorry did not understand command")
+    except Exception as e:
+        if 'url' in str(e):
+            print("this video maybe copyrighted download is not possible")
+            exit(1)
 
 
 
