@@ -84,7 +84,7 @@ def progress_check(stream = None, chunk = None, file_handle = None, remaining = 
 #file path to save the video
 def file_path():#complete
     home = os.path.expanduser('~')
-    dpath = os.path.join(home, 'storage', 'Download')
+    dpath = os.path.join(home, 'storage', 'downloads')
     return dpath
 
 #the download func
